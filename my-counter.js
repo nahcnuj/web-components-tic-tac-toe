@@ -1,11 +1,11 @@
-const template = document.createElement('template');
-template.innerHTML = `
-  <div>Count: <slot name="count"></slot></div>
-  <button id="increment">Increment</button>
-  <button id="decrement">Decrement</button>
-`;
-
 if (!customElements.get('my-counter')) {
+  const template = document.createElement('template');
+  template.innerHTML = `
+    <div>Count: <slot name="count"></slot></div>
+    <button id="increment">Increment</button>
+    <button id="decrement">Decrement</button>
+  `;
+
   customElements.define('my-counter', class extends HTMLElement {
     #binding = {};
 
