@@ -1,13 +1,65 @@
 if (!customElements.get('my-counter')) {
-  const template = document.createElement('template');
-  template.innerHTML = `
-    <div>Count: <slot name="count"></slot></div>
-    <button id="increment">Increment</button>
-    <button id="decrement">Decrement</button>
-  `;
+  const template = Object.assign(document.createElement('template'), {
+    innerHTML: `
+      <style>
+        :host {
+          display: inline-block;
+        }
+
+        .container {
+          padding: 1.2rem;
+          background: cyan;
+          line-height: 1.2;
+          text-align: center;
+
+          display: grid;
+          grid:
+            "a a"
+            "b c" / 6rem 6rem
+          ;
+          column-gap: 1rem;
+
+          .count {
+            grid-area: a;
+          }
+          #increment {
+            grid-area: b;
+          }
+          #decrement {
+            grid-area: c;
+          }
+        }
+
+        .count {
+          // width: 100%;
+          font-size: 3rem;
+          text-align: right;
+        }
+        button {
+          width: 100%;
+          font-size: 2rem;
+        }
+      </style>
+
+      <div class="container">
+        <div class="count"><slot name="count"></slot></div>
+        <button id="increment">+</button>
+        <button id="decrement">&minus;</button>
+      </div>
+    `,
+  });
 
   customElements.define('my-counter', class extends HTMLElement {
-    #binding = {};
+    /**
+     * A map of elements to bind to slots in the template.
+     * @type {Record<string, Node>}
+     */
+    #slots = {
+      count: Object.assign(document.createElement('span'), {
+        slot: 'count',
+        textContent: this.#count,
+      }),
+    };
 
     static get observedAttributes() {
       return ['count'];
@@ -17,20 +69,18 @@ if (!customElements.get('my-counter')) {
       super();
 
       const node = template.content.cloneNode(true);
-      const counter = this.#binding.count = Object.assign(document.createElement('span'), {
-        slot: 'count',
-        textContent: '0',
-      });
-      node.querySelector("slot[name='count']").replaceWith(counter);
-
-      const root = this.attachShadow({ mode: 'open' });
-      root.append(node);
-      root.querySelector('#increment').addEventListener('click', (() => {
+      for (const name in this.#slots) {
+        node.querySelector(`slot[name='${name}']`).replaceWith(this.#slots[name]);
+      }
+      node.querySelector('#increment').addEventListener('click', (() => {
         this.#count++;
       }).bind(this));
-      root.querySelector('#decrement').addEventListener('click', (() => {
+      node.querySelector('#decrement').addEventListener('click', (() => {
         this.#count--;
       }).bind(this));
+
+      const root = this.attachShadow({ mode: 'closed' });
+      root.append(node);
     }
 
     set #count(value) {
@@ -42,7 +92,7 @@ if (!customElements.get('my-counter')) {
     }
 
     attributeChangedCallback(name, _, next) {
-      this.#binding[name].textContent = next;
+      this.#slots[name].textContent = next;
     }
   });
 }

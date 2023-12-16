@@ -4,12 +4,26 @@
     <meta charset="utf-8">
     <title>Practice of Web Components</title>
 
+    <style>
+        .counter {
+            margin-block: 1rem;
+            margin-inline: auto;
+            width: 300px;
+        }
+    </style>
     <script type="module" src="my-counter.js"></script>
 </head>
 
 <body>
     <h1>Practice of Web Components</h1>
+
     <h2>Counter</h2>
+
+    <div class="counter">
+        <my-counter></my-counter>
+    </div>
+
+    <!--reuse-->
     <my-counter></my-counter>
 </body>
 
