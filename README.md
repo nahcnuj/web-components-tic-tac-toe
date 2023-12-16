@@ -1,1 +1,1 @@
-# web-components-tic-tac-toe
+# Practice of Web Components
