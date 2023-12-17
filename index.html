@@ -7,6 +7,10 @@
     <title>Practice of Web Components</title>
 
     <style>
+        h2 {
+            margin-block-start: 2rem;
+        }
+
         .container {
             max-width: 40rem;
             margin-inline: auto;
@@ -16,15 +20,25 @@
             width: 18rem;
             height: 10rem;
             margin-inline: auto;
-            font-size: 1rem;
+        }
+
+        .tic-tac-toe {
+            width: 40rem;
+            height: 20rem;
         }
     </style>
+    <script type="module" src="tic-tac-toe.js" async></script>
     <script type="module" src="my-counter.js" async></script>
 </head>
 
 <body>
     <div class="container">
         <h1>Practice of Web Components</h1>
+
+        <h2>Tic-tac-toe（三目並べ）</h2>
+        <div class="tic-tac-toe">
+            <tic-tac-toe></tic-tac-toe>
+        </div>
 
         <h2>Counter</h2>
         <div class="counter">
