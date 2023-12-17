@@ -2,18 +2,17 @@ if (!customElements.get('my-counter')) {
   const template = Object.assign(document.createElement('template'), {
     innerHTML: `
       <style>
-        :host {
-          display: inline-block;
-        }
-
         /* Grid layout */
         .container {
+          width: 100%;
+          height: 100%;
           display: grid;
           grid:
-            "a a"
-            "b c" / 6rem 6rem
+            "a a" 40%
+            "b c" 30% / 40% 40%
           ;
-          column-gap: 1rem;
+          align-content: space-evenly;
+          justify-content: space-evenly;
         }
         .container #count {
           grid-area: a;
@@ -26,21 +25,18 @@ if (!customElements.get('my-counter')) {
         }
 
         .container {
-          padding: 1.2rem;
           background: cyan;
-          line-height: 1.2;
-          text-align: center;
         }
         #count {
-          /* 右揃え */
           display: flex;
           justify-content: flex-end;
+          align-items: end;
 
-          font-size: 3rem;
+          font-size: 300%;
+          line-height: 1;
         }
         button {
-          width: 100%;
-          font-size: 2rem;
+          font-size: 200%;
         }
       </style>
 
