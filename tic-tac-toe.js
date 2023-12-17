@@ -142,12 +142,6 @@ class TicTacToe extends HTMLElement {
           grid-template-columns: repeat(2, 1fr);
           column-gap: 1rem;
         }
-        .container #board {
-          grid-area: a;
-        }
-        .container #status {
-          grid-area: b;
-        }
       </style>
 
       <tic-tac-toe-board id="board"></tic-tac-toe-board>
