@@ -6,34 +6,37 @@ if (!customElements.get('my-counter')) {
           display: inline-block;
         }
 
+        /* Grid layout */
         .container {
-          padding: 1.2rem;
-          background: cyan;
-          line-height: 1.2;
-          text-align: center;
-
           display: grid;
           grid:
             "a a"
             "b c" / 6rem 6rem
           ;
           column-gap: 1rem;
-
-          .count {
-            grid-area: a;
-          }
-          #increment {
-            grid-area: b;
-          }
-          #decrement {
-            grid-area: c;
-          }
+        }
+        .container #count {
+          grid-area: a;
+        }
+        .container #increment {
+          grid-area: b;
+        }
+        .container #decrement {
+          grid-area: c;
         }
 
-        .count {
-          // width: 100%;
+        .container {
+          padding: 1.2rem;
+          background: cyan;
+          line-height: 1.2;
+          text-align: center;
+        }
+        #count {
+          /* 右揃え */
+          display: flex;
+          justify-content: flex-end;
+
           font-size: 3rem;
-          text-align: right;
         }
         button {
           width: 100%;
@@ -42,7 +45,7 @@ if (!customElements.get('my-counter')) {
       </style>
 
       <div class="container">
-        <div class="count"><slot name="count"></slot></div>
+        <div id="count"><slot name="count"></slot></div>
         <button id="increment">+</button>
         <button id="decrement">&minus;</button>
       </div>
@@ -79,8 +82,7 @@ if (!customElements.get('my-counter')) {
         this.#count--;
       }).bind(this));
 
-      const root = this.attachShadow({ mode: 'closed' });
-      root.append(node);
+      this.attachShadow({ mode: 'closed' }).append(node);
     }
 
     set #count(value) {

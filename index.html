@@ -7,26 +7,28 @@
     <title>Practice of Web Components</title>
 
     <style>
-        .counter {
-            margin-block: 1rem;
+        .container {
+            max-width: 600px;
             margin-inline: auto;
+        }
+
+        .counter {
             width: 300px;
+            margin-inline: auto;
         }
     </style>
     <script type="module" src="my-counter.js" async></script>
 </head>
 
 <body>
-    <h1>Practice of Web Components</h1>
+    <div class="container">
+        <h1>Practice of Web Components</h1>
 
-    <h2>Counter</h2>
-
-    <div class="counter">
-        <my-counter></my-counter>
+        <h2>Counter</h2>
+        <div class="counter">
+            <my-counter></my-counter>
+        </div>
     </div>
-
-    <!--reuse-->
-    <my-counter></my-counter>
 </body>
 
 </html>
