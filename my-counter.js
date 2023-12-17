@@ -6,6 +6,7 @@ if (!customElements.get('my-counter')) {
         .container {
           width: 100%;
           height: 100%;
+          min-height: 10rem;
           display: grid;
           grid:
             "a a" 40%
@@ -32,11 +33,11 @@ if (!customElements.get('my-counter')) {
           justify-content: flex-end;
           align-items: end;
 
-          font-size: 300%;
+          font-size: 3em;
           line-height: 1;
         }
         button {
-          font-size: 200%;
+          font-size: 2em;
         }
       </style>
 
