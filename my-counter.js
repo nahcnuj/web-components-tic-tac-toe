@@ -33,11 +33,11 @@ if (!customElements.get('my-counter')) {
           justify-content: flex-end;
           align-items: end;
 
-          font-size: 3em;
+          font-size: 3rem;
           line-height: 1;
         }
         button {
-          font-size: 2em;
+          font-size: 2rem;
         }
       </style>
 
