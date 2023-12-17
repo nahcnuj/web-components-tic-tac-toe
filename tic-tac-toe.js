@@ -28,7 +28,7 @@ class Square extends HTMLElement {
         }
       </style>
 
-      <button class="square" id="value"></button>
+      <button class="square" id="value" aria-label="Cell"></button>
     `,
   });
 
